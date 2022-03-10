@@ -29,12 +29,12 @@ app.get('/jobs', urlencodedParser, async (req, res) => {
     const phone = req.body.phone;
     const daysMargin = req.body.daysMargin;
     const date = new Date(req.body.date);
-
+    console.log('got here a')
     let [jobs, customer] = await Promise.all([
         axios.get(`https://api.servicefusion.com/v1/jobs?access_token=${token}&filters[phone]=${phone}`),
         axios.get(`https://api.servicefusion.com/v1/customers?access_token=${token}&filters[phone]=${phone}`)
     ])
-
+    console.log('got here b')
     let total_spent = 0;
     let total_owed = 0;
     let amount_of_jobs = 0;
