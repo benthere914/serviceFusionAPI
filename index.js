@@ -2,7 +2,7 @@ import axios from "axios";
 import express from "express";
 import bodyParser from 'body-parser';
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.get('/', (req, res) => {
     res.send('hello world')
@@ -58,5 +58,5 @@ app.get('/jobs', urlencodedParser, async (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Listening on port ${80}`);
+  console.log(`Listening on port ${port}`);
 });
