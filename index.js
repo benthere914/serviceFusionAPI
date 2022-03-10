@@ -5,7 +5,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.get('/', (req, res) => {
-    print('got to the front')
     res.send('hello world')
 })
 app.get('/token', urlencodedParser, async (req, res) => {
