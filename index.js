@@ -4,6 +4,9 @@ import bodyParser from 'body-parser';
 const app = express();
 const port = 3000;
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.get('/', (req, res) => {
+    res.send('hello world')
+})
 app.get('/token', urlencodedParser, async (req, res) => {
     const id = req.body.id;
     const secret = req.body.secret;
