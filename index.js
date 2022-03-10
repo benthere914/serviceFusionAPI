@@ -30,17 +30,16 @@ app.get('/jobs', urlencodedParser, async (req, res) => {
     const daysMargin = req.body.daysMargin;
     const date = new Date(req.body.date);
     console.log('got here a')
-    try {
-        let [jobs, customer] = await Promise.all([
-            axios.get(`https://api.servicefusion.com/v1/jobs?access_token=${token}&filters[phone]=${phone}`),
-            axios.get(`https://api.servicefusion.com/v1/customers?access_token=${token}&filters[phone]=${phone}`)
-        ])
-        console.log(jobs.data.items[0])
-        console.log(customer.data.items[0])
 
-    } catch (error) {
-        console.log(error)
-    }
+        // let [jobs] = await Promise.all([
+        //     axios.get(`https://api.servicefusion.com/v1/jobs?access_token=${token}&filters[phone]=${phone}`),
+        //     axios.get(`https://api.servicefusion.com/v1/customers?access_token=${token}&filters[phone]=${phone}`)
+        // ])
+        // console.log(jobs.data.items[0])
+        // console.log(customer.data.items[0])
+    let jobs = await axios.get(`https://api.servicefusion.com/v1/jobs?access_token=${token}&filters[phone]=${phone}`)
+
+
     console.log('got here b')
     let total_spent = 0;
     let total_owed = 0;
@@ -58,9 +57,9 @@ app.get('/jobs', urlencodedParser, async (req, res) => {
         }
     }
 
-    const pmp = customer.data.items[0].assigned_contract;
-    const customer_name = customer.data.items[0].customer_name
-    res.send({customer_name, total_spent, total_owed, amount_of_jobs, pmp})
+    // const pmp = customer.data.items[0].assigned_contract;
+    // const customer_name = customer.data.items[0].customer_name
+    res.send({ total_spent, total_owed, amount_of_jobs})
 })
 
 
