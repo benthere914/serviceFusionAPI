@@ -35,6 +35,8 @@ app.get('/jobs', urlencodedParser, async (req, res) => {
         axios.get(`https://api.servicefusion.com/v1/customers?access_token=${token}&filters[phone]=${phone}`)
     ])
     console.log('got here b')
+    console.log(jobs.data.items[0])
+    console.log(customer.data.items[0])
     let total_spent = 0;
     let total_owed = 0;
     let amount_of_jobs = 0;
